@@ -13,6 +13,31 @@ def dokon(oyinchi):
         oyinchi.sotib_ol(qurollar[int(tanlov) - 1])
 
 
+def oyin_boshlash(ct, t):
+    navbat = ct
+    dushman = t
+
+    while ct.tirimi() and t.tirimi():
+        print(f"Navbat: {navbat.nomi}, {navbat.joni}, {navbat.qurol.nomi}")
+
+        print("1) otish 2) oqlash 3) dokon")
+        tanlov = input("tanlang: ")
+
+        if tanlov == "1":
+            navbat.otish(dushman)
+        elif tanlov == "2":
+            navbat.qurol.qayta_oqlash()
+        elif tanlov == "3":
+            dokon(navbat)
+
+        navbat, dushman = dushman, navbat
+
+    if ct.tirimi():
+        print(ct.nomi, "yutti joni", ct.joni, ct.puli)
+    if t.tirimi():
+        print(t.nomi, "yutti joni", t.joni, t.puli)
+
+
 def main():
     ct_nomi = input("Counter-Terrorist nomi: ")
     t_nomi = input("Terrorist nomi: ")
@@ -28,6 +53,8 @@ def main():
 
     print(ct.nomi, ct.jamoa, ct.puli, ct.qurol.nomi)
     print(t.nomi, t.jamoa, t.puli, t.qurol.nomi)
+
+    oyin_boshlash(ct, t)
 
 
 main()

@@ -1,4 +1,4 @@
-from random import choice
+from random import choice, randint
 
 from qurol import qurollar, Qurol
 
@@ -19,7 +19,7 @@ class Oyinchi:
             print("mablag yetarli emas.")
 
     def zarar_ol(self, qurol):
-        self.joni -= qurol.zarar
+        self.joni -= randint(1, qurol.zarar)
 
         if self.joni < 0:
             self.joni = 0
@@ -27,6 +27,14 @@ class Oyinchi:
 
         if self.joni == 0:
             print(f"{self.nomi} oldi.")
+
+    def otish(self, dushman):
+        if self.qurol.oqlar_soni > 0:
+            dushman.zarar_ol(self.qurol)
+            self.qurol.otish()
+
+        else:
+            print("oqlar tugagan qayta oqlang.")
 
     def tirimi(self):
         return self.joni > 0
